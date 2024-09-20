@@ -2,10 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../../redux/store";
-import {
-  editProduct,
-  fetchProductsById,
-} from "../../../redux/product/productThunks";
+import { fetchProductsById } from "../../../redux/product/productThunks";
 import { Product } from "../models/productInterface";
 import { notification } from "antd";
 import LoadingSpinners from "../../../shared/components/spinners/LoadingSpinners";
@@ -29,7 +26,7 @@ const UpdateProducts = () => {
 
   const handleSubmit = async (productData: Omit<Product, "id">) => {
     try {
-      if (id) await dispatch(editProduct(id, productData));
+      // if (id) await dispatch(editProduct(id, productData));
 
       // Notif
       notification.success({

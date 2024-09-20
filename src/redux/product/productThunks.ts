@@ -4,23 +4,11 @@ import axiosInstance from "../../api/coreApi";
 import { AppDispatch } from "../store";
 import { addProduct, deleteProduct, updateProduct } from "./productSlice";
 
-export const createProduct = (product: Omit<Product, 'id'>) => async (dispatch: AppDispatch) => {
-  try {
-    const response = await axiosInstance.post<Product>('/products', product)
-    dispatch(addProduct(response.data))
-  } catch (error) {
-    throw new Error('An error occurred while creating the product');
-  }
-}
+// THUNKS itu tempat hit api (props) => async (dispatch)
 
-export const editProduct = (id: string, product: Omit<Product, 'id'>) => async (dispatch: AppDispatch) => {
-  try {
-    const response = await axiosInstance.put<Product>(`/products/${id}`, product);
-    dispatch(updateProduct(response.data));
-  } catch (error) {
-    throw new Error('An error occurred while updating the product');
-  }
-}
+// createProduct()
+
+// editProduct()
 
 export const removeProduct = (id: string) => async (dispatch: AppDispatch) => {
   try {
@@ -31,19 +19,18 @@ export const removeProduct = (id: string) => async (dispatch: AppDispatch) => {
   }
 };
 
-// async thunk
-export const fetchProducts = createAsyncThunk<Product[], void>(
-  'products/fetchProducts',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axiosInstance.get<Product[]>('/products')
-      return response.data
-    } catch (error) {
-      console.error(error)
-      return rejectWithValue('Failed to fetch products')
-    }
-  }
-)
+// async thunk -- BUAT FETCH PRODUCT DENGAN createAsyncThunk
+export const fetchProducts = () => {
+  return [{
+    description: "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+    id: "1",
+    image: "https://loremflickr.com/640/480/business",
+    material: "Granite",
+    name: "Incredible Fresh Computer",
+    price: "407.00",
+    slug: "quia-nostrum-fugiat"
+  }]
+}
 
 export const fetchProductsById = createAsyncThunk<Product, string>(
   'products/fetchProductsById',

@@ -1,19 +1,10 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../../../redux/store";
-import { useEffect } from "react";
 import ProductList from "../components/ProductList";
-import { fetchProducts } from "../../../redux/product/productThunks";
 
 const ShowProducts = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
 
   return (
     <div>

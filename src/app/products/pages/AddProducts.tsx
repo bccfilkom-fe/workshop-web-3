@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../models/productInterface";
-import { createProduct } from "../../../redux/product/productThunks";
 import { notification } from "antd";
 import ProductForm from "../components/ProductForm";
 
@@ -12,7 +11,7 @@ const AddProducts = () => {
 
   const handleSubmit = async (productData: Omit<Product, "id">) => {
     try {
-      await dispatch(createProduct(productData));
+      // await dispatch(createProduct(productData));
 
       // Notif
       notification.success({

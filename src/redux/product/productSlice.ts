@@ -19,14 +19,12 @@ const initialState: ProductState = {
 const productSlice = createSlice({
     name: 'products', initialState, reducers: {
         addProduct: (state, action: PayloadAction<Product>) => {
-            state.products.push(action.payload)
+            // isi ini
         },
         updateProduct: (state, action: PayloadAction<Product>) => {
-            const index = state.products.findIndex(product => product.id === action.payload.id)
-            if (index !== -1) {
-                state.products[index] = action.payload
-            }
+            // isi ini
         },
+
         deleteProduct: (state, action: PayloadAction<string>) => {
             state.products = state.products.filter(product => product.id !== action.payload)
         },
@@ -34,20 +32,6 @@ const productSlice = createSlice({
             state.currentProduct = action.payload
         },
     }, extraReducers: (builder) => {
-        // ALL  
-        builder.addCase(fetchProducts.pending, (state) => {
-            state.loading = true;
-            state.error = null;
-        });
-        builder.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<Product[]>) => {
-            state.loading = false;
-            state.products = action.payload;
-        });
-        builder.addCase(fetchProducts.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload as string;
-        });
-
         // BY ID 
         builder.addCase(fetchProductsById.pending, (state) => {
             state.loading = true;
